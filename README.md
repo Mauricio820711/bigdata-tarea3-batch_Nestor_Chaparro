@@ -1,10 +1,9 @@
-# bigdata-tarea3-batch_Nestor_Chaparro
-Procesamiento en batch con Apache Spark (PySpark) - Curso Big Data UNAD, grupo 202016911_73_ Nestor_Chaparro
 # Procesamiento en batch con Apache Spark: ventas de comercio electrónico (datos simulados)
 
 Repositorio de la Tarea 3 del curso Big Data (código 202016911_73), Universidad Nacional Abierta y a Distancia (UNAD).
 
 **Autor:** Néstor Mauricio Chaparro Acero
+
 **Presentado a:** Ing. Nevardo Alonso Ayala Rojas
 
 ## Descripción de la solución
@@ -22,8 +21,8 @@ Este proyecto procesa en batch un conjunto de datos de pedidos de una tienda en 
 Los datos son **simulados**. No provienen de una tienda real. Los genera el script `generar_dataset.py` con valores aleatorios y una semilla fija (`seed 42`), por lo que el archivo se puede reproducir.
 
 - **Columnas:** `order_id`, `customer_id`, `category`, `quantity`, `unit_price`, `payment_method`, `city`, `order_date`.
+- **Registros:** 200.000 pedidos únicos, más 1.978 filas duplicadas introducidas a propósito (201.978 filas en total).
 - **Tamaño en HDFS:** 12,8 MB.
-- **Registros cargados:** [COMPLETAR con la línea "Registros cargados" de la salida del script].
 - **Errores introducidos a propósito**, para demostrar la etapa de limpieza: cerca del 2 % de pedidos sin categoría, 2 % con cantidad negativa, 1 % sin fecha y 1 % de filas duplicadas.
 
 ## Contenido del repositorio
@@ -32,13 +31,12 @@ Los datos son **simulados**. No provienen de una tienda real. Los genera el scri
 |---|---|
 | `generar_dataset.py` | Genera el CSV simulado `ventas_ecommerce.csv`. |
 | `procesamiento_batch.py` | Carga, limpia, transforma y analiza los datos, y guarda el gráfico. |
-| `grafico_batch.png` | Gráficos resultantes de la ejecución. |
 | `README.md` | Este documento. |
 
 ## Entorno
 
 - Máquina virtual Ubuntu con Hadoop (HDFS y YARN) y Apache Spark, instalada según los instructivos del curso (Anexos 1 y 2).
-- Python 3, `pyspark` [VERIFICAR versión con `pip show pyspark`], `matplotlib` 3.10.9.
+- Python 3, PySpark y matplotlib 3.10.9.
 - Dos usuarios en la VM: `hadoop` (servicios de Hadoop) y `vboxuser` (ejecución de los scripts).
 
 ## Instrucciones de ejecución
@@ -52,11 +50,14 @@ jps
 
 `jps` debe mostrar `NameNode`, `DataNode`, `SecondaryNameNode`, `ResourceManager` y `NodeManager`.
 
-**2. Instalar las librerías** (sesión de `vboxuser`, solo la primera vez):
+**2. Instalar las librerías de Python** (sesión de `vboxuser`, solo la primera vez):
 
 ```bash
-pip install pyspark matplotlib
+sudo pip install pyspark==3.5.1
+python3 -m pip install matplotlib
 ```
+
+La instalación de PySpark sigue el Anexo 2 del curso.
 
 **3. Generar el CSV** (sesión de `vboxuser`):
 
@@ -98,8 +99,6 @@ El script imprime en consola la carga, la limpieza, las estadísticas y las tabl
 **Estadísticas básicas:** el valor medio por pedido (`total`) fue de unos 762.469 pesos, con un mínimo de 10.000 y un máximo de 2.500.000.
 
 **Agregaciones:** las cinco categorías suman ventas muy parecidas, entre 28.800 y 29.100 millones de pesos. Los tres medios de pago tienen cerca de 63.000 pedidos cada uno.
-
-![Resultados del análisis batch](grafico_batch.png)
 
 ## Limitaciones
 
