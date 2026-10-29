@@ -31,6 +31,7 @@ Los datos son **simulados**. No provienen de una tienda real. Los genera el scri
 |---|---|
 | `generar_dataset.py` | Genera el CSV simulado `ventas_ecommerce.csv`. |
 | `procesamiento_batch.py` | Carga, limpia, transforma y analiza los datos, y guarda el gráfico. |
+| `grafico_batch.png` | Gráficos resultantes de la ejecución. |
 | `README.md` | Este documento. |
 
 ## Entorno
@@ -99,6 +100,8 @@ El script imprime en consola la carga, la limpieza, las estadísticas y las tabl
 **Estadísticas básicas:** el valor medio por pedido (`total`) fue de unos 762.469 pesos, con un mínimo de 10.000 y un máximo de 2.500.000.
 
 **Agregaciones:** las cinco categorías suman ventas muy parecidas, entre 28.800 y 29.100 millones de pesos. Los tres medios de pago tienen cerca de 63.000 pedidos cada uno.
+
+![Resultados del análisis batch](grafico_batch.png)
 
 ## Limitaciones
 
